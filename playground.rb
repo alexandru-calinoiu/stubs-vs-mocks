@@ -29,7 +29,8 @@ end
 
 describe Payment do
   it "records the payment" do
-    payment_gateway = PaymentGateway.new
+    payment_gateway = double()
+    allwo(payment_gateway).to receive(:charge).and_return(payment_id: 42)
     logger = Logger.new
 
     payment = Payment.new(payment_gateway, logger)
